@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        #container{
+            width: 80px;
+            height: 80px;
+            background-color: red;
+        }
+        #subchild{
+            width: 40px;
+            height: 40px;
+            background-color: yellow;
+        }
+    </style>
+    <title>event.target and event.currentTarget</title>
+</head>
+<body>
+    <div id="container">
+        <div id="subchild"></div>
+    </div>
+    <script>
+        let el1 = document.getElementById('container');
+        let el2 = document.getElementById('subchild');
+        el1.addEventListener('click', function(event){
+            console.log("container event====>", event.target, event.currentTarget);
+        }, true)
+        el2.addEventListener('click', function(){
+            console.log("subchild event====>", event.target, event.currentTarget);
+
+        }, true)
+    </script>
+</body>
+</html>

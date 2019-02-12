@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <anchored-heading
+            v-for="item in groceryList"
+            v-bind:level="item.level"
+            v-bind:key="item.id">
+            hello world!
+        </anchored-heading>
+    </div>
+    <script>
+        // Vue.component('todo-item', {
+        //         // todo-item 组件现在接受一个
+        //         // "prop"，类似于一个自定义特性。
+        //         // 这个 prop 名为 todo。
+        //         props: ['todo'],
+        //         template: '<li>{{ todo.text }}</li>'
+        //     })
+            var getChildrenTextContent = function (children) {
+                    return children.map(function (node) {
+                        return node.children
+                        ? getChildrenTextContent(node.children)
+                        : node.text
+                    }).join('')
+                }
+                //this.$slots.default ([VNode])
+                Vue.component('anchored-heading', {
+                    render: function (createElement) {
+                        // 创建 kebab-case 风格的ID
+                        var headingId = getChildrenTextContent(this.$slots.default)
+                        .toLowerCase()
+                        .replace(/\W+/g, '-')
+                        .replace(/(^\-|\-$)/g, '')
+
+                        console.log("this.$slots.default====>", this.$slots.default);
+                        return createElement(
+                            'h' + this.level,
+                            [
+                                createElement('a', {
+                                attrs: {
+                                    name: headingId,
+                                    href: '#' + headingId
+                                }
+                                }, this.$slots.default)
+                            ]
+                        )
+                    },
+                    props: {
+                        level: {
+                        type: String,
+                        required: true
+                        }
+                    }
+                })
+        var app = new Vue({
+                el: '#app',
+                data: {
+                    groceryList: [
+                    { id: 0, level: '1' },
+                    { id: 1, level: '2' },
+                    { id: 2, level: '3' }
+                    ]
+                }
+            })
+    </script>
+</body>
+</html>
