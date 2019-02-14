@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <title>vue slot test</title>
+</head>
+<body>
+    <div id="app">
+        <blog-post>
+            jack love {{name}}
+        </blog-post>
+    </div>
+    <script>
+        Vue.component('blog-post', {
+            template: '<h3><slot>submit</slot></h3>'
+        })
+        var app = new Vue({
+                el: '#app',
+                data: function(){
+                    return {
+                        name: 'kathy'
+                    }
+                }
+            })
+    </script>
+</body>
+</html>
