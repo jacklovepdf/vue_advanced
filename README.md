@@ -35,15 +35,15 @@ v-bind:class 指令也可以与普通的 class 属性共存, 支持字符串，�
 
 v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值而总是将 Vue 实例的数据作为数据来源；
 
-1.7 关于组件
+2 深入理解组件
 
-(1) 插槽
+2.1 插槽
 
-(2) 自定义组件
+2.2 自定义组件
 
-(3) 动态组件
+2.3 动态组件
 
-(4) 组件注册
+2.4 组件注册
 全局注册：
 Vue.component('my-component-name', {
   // ... 选项 ...
@@ -64,11 +64,27 @@ new Vue({
 
 [业务组件局部注册，基础组件全局注册的最佳实践:](https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/components/_globals.js)
 
-(5) 组件的属性(props)
+2.5 组件的属性(props)
 属性值的验证（主要用于开发环境）;
 属性值的替换和合并：class和style一般会合并，其它特性往往会替换；
 ![属性合并](./src/images/vue-props.png);
 禁用特性继承:通过inheritAttrs: false 和 $attrs，你就可以手动决定这些特性会被赋予哪个元素。
 
-（6）自定义事件
+2.6 自定义事件
+(1) 事件名
 推荐使用kebab-case的事件名，大小写不敏感（dom模版会把事件名转为小写）；
+
+(2) 将原生事件绑定到组件
+![事件绑定](./src/images/input-emit.png);
+
+2.7 关于v-model
+(1) v-model与表单元素
+开发者可以很方便的通过v-model指令在表单元素input, textarea 以及select上创建数据的双向绑定；
+本质上说它是语法糖，会根据元素类型选取正确的方法更新元素,除了radio，checkbox以及select等外，默认情况下，v-model的值会与表单元素的value绑定，并且在触发input事件时自动更新，从而实现双向绑定;对于上面几个特例，vue提供了组件model选项（2.2.0+以上）来自定义v-model的值绑定的属性以及更新的事件；
+
+![复选框](./src/images/input-checkbox.png);
+![单选框](./src/images/input-radio.png);
+
+(2) v-model与自定义组件的v-model;
+
+3 过渡&动画
