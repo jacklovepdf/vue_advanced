@@ -49,7 +49,11 @@ v-model 会忽略所有表单元素的 value、checked、selected 特性的初�
   将父组件模版內的数据回传给子组件模版；
   ![作用域插槽](./src/images/vue-slot.png);
 
-2.2 自定义组件
+2.2 处理边界条件
+
+(1) 通过ref访问组件实例
+(2) 依赖注入
+[依赖注入实例](./src/images/vue-inject.png);
 
 2.3 动态组件
 
