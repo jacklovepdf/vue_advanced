@@ -113,7 +113,7 @@ new Vue({
 ![属性合并](./src/images/vue-props.png);
 禁用特性继承:通过inheritAttrs: false 和 $attrs，你就可以手动决定这些特性会被赋予哪个元素。
 
-2.7 关于v-model
+2.6 关于v-model
 (1) v-model与表单元素
 开发者可以很方便的通过v-model指令在表单元素input, textarea 以及select上创建数据的双向绑定；
 本质上说它是语法糖，会根据元素类型选取正确的方法更新元素,除了radio，checkbox以及select等外，默认情况下，v-model的值会与表单元素的value绑定，并且在触发input事件时自动更新，从而实现双向绑定;对于上面几个特例，vue提供了组件model选项（2.2.0+以上）来自定义v-model的值绑定的属性以及更新的事件；
@@ -123,7 +123,7 @@ new Vue({
 
 (2) v-model与自定义组件的v-model;
 
-2.8 异步组件
+2.7 异步组件
   主要作用是模块的按需加载；为了实现代码分割，按需加载的功能，Vue允许你以一个工厂函数的方式异步解析你的组件定义，只有当组件需要被渲染的时候，才去加载组件；
 
 ![异步组件使用](./src/images/vue-async.png);
