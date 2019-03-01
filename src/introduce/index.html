@@ -32,6 +32,7 @@
                     }).join('')
                 }
                 //this.$slots.default ([VNode])
+                // createElement的签名是（tagname, options, [VNode]）
                 Vue.component('anchored-heading', {
                     render: function (createElement) {
                         // 创建 kebab-case 风格的ID

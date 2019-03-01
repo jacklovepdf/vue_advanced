@@ -213,4 +213,35 @@ new Vue({
 
 (4) 自定义选项的合并策略
 
-  自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向Vue.config.optionMergeStrategies 添加一个函数
+  自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向Vue.config.optionMergeStrategies 添加一个函数;
+
+4.2 自定义指令
+
+(1) 注册全局或者局部指令
+
+```javascript
+  // 注册一个全局自定义指令 `v-focus`
+  Vue.directive('focus', {
+    // 当被绑定的元素插入到 DOM 中时……
+    inserted: function (el) {
+      // 聚焦元素
+      el.focus()
+    }
+  })
+  //directives是组件选项
+  directives: {
+    focus: {
+      // 指令的定义
+      inserted: function (el) {
+        el.focus()
+      }
+    }
+  }
+  // to use
+  <input v-focus>
+```
+
+(2) 指令对象中的钩子函数及对应的参数
+  主要包括bind,unbind, update, componentupdate和inserted; 钩子函数参数包括el, binding, vnode和oldVnode(只有update相关的两个钩子函数包含这一参数)
+
+4.3 渲染函数和jsx
