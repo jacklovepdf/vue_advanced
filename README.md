@@ -154,3 +154,63 @@ new Vue({
 (1) 进入/离开过渡
 (2) 定位位置过渡（v-move）
 (3) 列表交错过渡
+
+3.3 可复用的过渡
+
+3.4 动态过渡
+
+3.5 状态过渡（针对元素本身状态值的过渡--eg属性值，颜色，大小等等）
+
+4.可复用和组件
+
+4.1 mixin(vue推荐的组件复用方式，可以对比一下hoc)
+
+(1) 混入对象可以包含任何组件选项；
+
+```javascript
+  // 定义一个混入对象
+  var myMixin = {
+    created: function () {
+      this.hello()
+    },
+    methods: {
+      hello: function () {
+        console.log('hello from mixin!')
+      }
+    }
+  }
+
+  // 定义一个使用混入对象的组件
+  var Component = Vue.extend({
+    mixins: [myMixin]
+  })
+
+  var component = new Component() // => "hello from mixin!"
+```
+
+(2) 混人对象和组件选项的合并
+   合并规则可以分为三种情况：数据项，值为函数的项以及值为对象的项；
+
+(3) 全局混入
+  使用全局混入对象，将会影响到所有之后创建的Vue实例；大多数情况下，只应当应用于自定义选项。也可以将其用作Plugins以避免产生重复应用
+
+```javascript
+  // 为自定义的选项 'myOption' 注入一个处理器。
+  Vue.mixin({
+    created: function () {
+      var myOption = this.$options.myOption
+      if (myOption) {
+        console.log(myOption)
+      }
+    }
+  })
+
+  new Vue({
+    myOption: 'hello!' //自定义选项
+  })
+  // => "hello!"
+```
+
+(4) 自定义选项的合并策略
+
+  自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向Vue.config.optionMergeStrategies 添加一个函数
