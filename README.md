@@ -55,7 +55,7 @@ v-model 会忽略所有表单元素的 value、checked、selected 特性的初�
 (4) 编译作用域
   父组件模板的所有东西都会在父级作用域内编译；子组件模板的所有东西都会在子级作用域内编译。
 (5) 作用域插槽
-  将父组件模版內的数据回传给子组件模版；
+  将父组件模版內的数据回传给子组件模版；(插槽prop))
   ![作用域插槽](./src/images/vue-slot.png);
 
 2.2 处理边界条件
@@ -245,3 +245,54 @@ new Vue({
   主要包括bind,unbind, update, componentupdate和inserted; 钩子函数参数包括el, binding, vnode和oldVnode(只有update相关的两个钩子函数包含这一参数)
 
 4.3 渲染函数和jsx
+(1) 渲染函数和template
+    大多数情况下，使用模版是更好的选择（模版的特点是更加的直观，可读性好，书写也比较方便），但在需要完全js编程了简化代码的场景，可以使用渲染函数；
+
+(2) 虚拟dom
+  “虚拟 DOM”是我们对由Vue组件树建立起来的整个VNode树的称呼, 通过构建虚拟dom, 然后映射为真时dom。
+
+(3) 渲染函数支持jsx
+  [jsx语法](https://github.com/vuejs/jsx#installation)
+
+(4) 函数式组件
+  函数式组件的开销低，作为包装组件非常有用；
+**note**: 函数式组件是无状态的，它没有实例；为了弥补函数式组件缺少的实例，渲染函数提供了上下文对象作为其第二个参数；
+
+4.4 插件
+  插件通常会为Vue添加全局功能, 通过全局方法Vue.use()使用插件,它需要在你调用 new Vue() 启动应用之前完成。
+
+```javascript
+    MyPlugin.install = function (Vue, options) {
+      // 1. 添加全局方法或属性
+      Vue.myGlobalMethod = function () {
+        // 逻辑...
+      }
+
+      // 2. 添加全局资源
+      Vue.directive('my-directive', {
+        bind (el, binding, vnode, oldVnode) {
+          // 逻辑...
+        }
+        ...
+      })
+
+      // 3. 注入组件
+      Vue.mixin({
+        created: function () {
+          // 逻辑...
+        }
+        ...
+      })
+
+      // 4. 添加实例方法
+      Vue.prototype.$myMethod = function (methodOptions) {
+        // 逻辑...
+      }
+  }
+```
+
+**note**: [更多插件问题详情问题参考社区插件集合](https://github.com/vuejs/awesome-vue)
+
+4.5 过滤器
+
+  Vue.js允许你自定义过滤器，常用于的文本格式化。过滤器可以用在两个地方：双花括号插值和 v-bind 表达式 (后者从 2.1.0+ 开始支持)
