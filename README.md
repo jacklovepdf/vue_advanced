@@ -320,7 +320,12 @@ new Vue({
 6 规模化
 
 6.1 路由
+(1) 通过history api自己实现路由
+(2) vue-router
+(3) 第三方路由（eg、Page.js)
 
 6.2 状态管理
+(1) vuex
 
 6.3 服务端渲染
+(1) 
