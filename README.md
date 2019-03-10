@@ -307,25 +307,38 @@ new Vue({
 5.3 typescript支持
 
 5.4 生产环境部署
+
 (1) 模版预编译
+
   当使用 DOM 内模板或 JavaScript 内的字符串模板时，模板会在运行时被编译为渲染函数, 这对于性能要求很高的应用显然还不够， 使用单文件组件可以
 在预编译的时候把模版编译成渲染函数；
 
 (2) 提取组件的css
+
   当使用单文件组件时，组件内的 CSS 会以 <style> 标签的方式通过 JavaScript 动态注入。这有一些小小的运行时开销，如果你使用服务端渲染，这会导致一段“无样式内容闪烁 (fouc)”。将所有组件的 CSS 提取到同一个文件可以避免这个问题，也会让 CSS 更好地进行压缩和缓存。
 
 (3) 跟踪运行时错误
+
   如果在组件渲染时出现运行错误，错误将会被传递至全局 Vue.config.errorHandler 配置函数 (如果已设置)。利用这个钩子函数来配合错误跟踪服务是个不错的主意。比如Sentry。
 
 6 规模化
 
 6.1 路由
-(1) 通过history api自己实现路由
-(2) vue-router
+
+(1) 通过history api自己实现路由;
+(2) vue-router;
 (3) 第三方路由（eg、Page.js)
 
 6.2 状态管理
+
 (1) vuex
 
 6.3 服务端渲染
-(1) 
+
+(1) [ssr](https://ssr.vuejs.org/zh/)
+(2) [nuxt](https://nuxtjs.org/)
+(3) [Quasar Framework SSR + PWA](https://quasar-framework.org/)
+
+6.4 深入响应式原理
+
+![响应式原理](./src/images/responsive.png);
